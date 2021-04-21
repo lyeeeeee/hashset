@@ -6,12 +6,8 @@ func NewInt64() *Int64Set {
 	return &Int64Set{}
 }
 
-func (s *Int64Set) Add(value int64) bool {
-	if s.Contains(value) {
-		return false
-	}
+func (s *Int64Set) Add(value int64) {
 	(*s)[value] = struct{}{}
-	return true
 }
 
 func (s *Int64Set) Contains(value int64) bool {
@@ -31,10 +27,12 @@ func (s *Int64Set) Remove(value int64) bool {
 
 func (s *Int64Set) Range(f func(value int64) bool) {
 	for k := range *s {
-		f(k)
+		if !f(k) {
+			break
+		}
 	}
 }
 
 func (s *Int64Set) Len() int {
-	return int(len(*s))
+	return len(*s)
 }
