@@ -1,4 +1,4 @@
-package main
+package hashset
 
 import (
 	"fmt"
@@ -57,11 +57,9 @@ func TestIntSet(t *testing.T) {
 		t.Fatal("invalid add")
 	}
 	if l.Add(21) {
-		t.Fatal(l.length," invalid add")
+		t.Fatal(l.length, " invalid add")
 	}
 }
-
-
 
 func TestStringSet(t *testing.T) {
 	x := NewString()

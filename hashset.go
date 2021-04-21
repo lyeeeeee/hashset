@@ -1,7 +1,9 @@
-package main
+package hashset
+
+import ()
 
 type Int64Set struct {
-	set map[int64]struct{}
+	set    map[int64]struct{}
 	length int64
 }
 
@@ -36,7 +38,7 @@ func (s *Int64Set) Remove(value int64) bool {
 }
 
 func (s *Int64Set) Range(f func(value int64) bool) {
-	for k,_:=range (*s).set {
+	for k, _ := range (*s).set {
 		f(k)
 	}
 }

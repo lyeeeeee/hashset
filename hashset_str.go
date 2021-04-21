@@ -1,4 +1,4 @@
-package main
+package hashset
 
 import (
 	"github.com/zhangyunhao116/wyhash"
@@ -9,7 +9,7 @@ func hash(s string) uint64 {
 }
 
 type StringSet struct {
-	set map[uint64]string
+	set    map[uint64]string
 	length int64
 }
 
@@ -45,7 +45,7 @@ func (s *StringSet) Remove(value string) bool {
 }
 
 func (s *StringSet) Range(f func(value string) bool) {
-	for _,v:=range (*s).set {
+	for _, v := range (*s).set {
 		f(v)
 	}
 }
