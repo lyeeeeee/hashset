@@ -60,25 +60,3 @@ func TestIntSet(t *testing.T) {
 		t.Fatal(l.length, " invalid add")
 	}
 }
-
-func TestStringSet(t *testing.T) {
-	x := NewString()
-	if !x.Add("111") || x.Len() != 1 {
-		t.Fatal("invalid")
-	}
-	if !x.Add("222") || x.Len() != 2 {
-		t.Fatal("invalid")
-	}
-	if x.Add("111") || x.Len() != 2 {
-		t.Fatal("invalid")
-	}
-	if !x.Contains("111") || !x.Contains("222") {
-		t.Fatal("invalid")
-	}
-	if !x.Remove("111") || x.Len() != 1 {
-		t.Fatal("invalid")
-	}
-	if !x.Remove("222") || x.Len() != 0 {
-		t.Fatal("invalid")
-	}
-}
