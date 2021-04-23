@@ -10,8 +10,8 @@ import (
 	"strings"
 )
 
-var lengthFunction = `func (s *Int64Set) Len() int {
-	return len(*s)
+var lengthFunction = `func (s Int64Set) Len() int {
+	return len(s)
 }`
 
 func main() {

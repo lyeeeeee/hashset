@@ -41,7 +41,7 @@ func TestIntSet(t *testing.T) {
 	if !l.Contains(0) {
 		t.Fatal("invalid contains")
 	}
-	if !l.Remove(0) || l.Len() != 0 {
+	if l.Remove(0); l.Len() != 0 {
 		t.Fatal("invalid remove")
 	}
 
