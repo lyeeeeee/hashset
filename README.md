@@ -1,23 +1,23 @@
 # hashset
+In this repository, we implemented one foundational data structure: Set based on Map in golang. We have:  
+Add(value int64): Adds the specified element to this set.  
+Contains(value int64) bool: Returns true if this set contains the specified element.  
+Remove(value int64): Removes the specified element from this set.  
+Range(f func(value int64) bool): Function f executes by taking element in the set as parameter sequentially until f returns false  
+Len() int: Returns the number of elements of this set.  
 
-In this repository, we implemented one foundational data structure: Set based on Map in golang. We have:
-func (s *Int64Set) Add(value int64): Adds the specified element to this set. 
-func (s *Int64Set) Contains(value int64) bool: Returns true if this set contains the specified element.
-func (s *Int64Set) Remove(value int64): Removes the specified element from this set
-func (s *Int64Set) Range(f func(value int64) bool): Function f executes by taking element in the set as parameter sequentially until f returns false
-func (s *Int64Set) Len() int: Returns the number of elements of this set
+We made two experiments in order to measuring the overall performance of:  
+1. the chosen value's type: empty struct vs. bool  
+2. the impact of checking the existence of the key before add/remove an item  
 
-We made two experiments in order to measuring the overall performance of:
-1. the chosen value's type: empty struct vs. bool
-2. the impact of checking the existence of the key before add/remove an item
-
-##Benchmark
-go version: go1.15.10 linux/amd64
-CPU: Intel(R) Xeon(R) Platinum 8260 CPU @ 2.40GHz (4C8T)
-OS: Debian 4.14.81.bm.15
-MEMORY: 16G
+## Benchmark
+go version: go1.15.10 linux/amd64  
+CPU: Intel(R) Xeon(R) Platinum 8260 CPU @ 2.40GHz (4C8T)  
+OS: Debian 4.14.81.bm.15  
+MEMORY: 16G  
 
 
+```
 $ go test -run=None -bench=. -benchtime=1000000x -benchmem -count=10 -cpu=4 1000000x20x4.txt
 $ benchstat 1000000x20x4.txt
 name                             time/op
@@ -39,3 +39,4 @@ RemoveAfterContains_Missing-4    0.00B
 RemoveWithoutContains_Missing-4  0.00B
 RemoveAfterContains_Hitting-4    0.00B
 RemoveWithoutContains_Hitting-4  0.00B
+```
