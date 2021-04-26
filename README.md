@@ -1,10 +1,10 @@
 # hashset
 In this repository, we implemented one foundational data structure: Set based on Map in golang. We have:  
-Add(value int64): Adds the specified element to this set.  
-Contains(value int64) bool: Returns true if this set contains the specified element.  
-Remove(value int64): Removes the specified element from this set.  
-Range(f func(value int64) bool): Function f executes by taking element in the set as parameter sequentially until f returns false  
-Len() int: Returns the number of elements of this set.  
+`Add(value int64)`: Adds the specified element to this set.  
+`Contains(value int64) bool`: Returns true if this set contains the specified element.  
+`Remove(value int64)`: Removes the specified element from this set.  
+`Range(f func(value int64) bool)`: Function f executes by taking element in the set as parameter sequentially until f returns false  
+`Len() int`: Returns the number of elements of this set.  
 
 We made two experiments in order to measuring the overall performance of:  
 1. the chosen value's type: empty struct vs. bool  
