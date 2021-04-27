@@ -1,4 +1,6 @@
 # hashset
+
+## Introduction
 In this repository, we implemented one foundational data structure: Set based on Map in golang. We have:  
 `Add(value int64)`: Adds the specified element to this set.  
 `Contains(value int64) bool`: Returns true if this set contains the specified element.  
@@ -6,16 +8,56 @@ In this repository, we implemented one foundational data structure: Set based on
 `Range(f func(value int64) bool)`: Function f executes by taking element in the set as parameter sequentially until f returns false  
 `Len() int`: Returns the number of elements of this set.  
 
-We made two experiments in order to measuring the overall performance of:  
+We made two experiments in order to measure the overall performance of the new hashset:  
 1. the chosen value's type: empty struct vs. bool  
 2. the impact of checking the existence of the key before add/remove an item  
+
+## Features
+- The API of hashset is totally compatible with [skipset](https://github.com/zhangyunhao116/skipset/)
+- Usually, developers implement the set in golang by setting the value of <key,value> pair to `bool` or `int`. However, We proved \
+that using empty struct is more space efficiency and slightly time efficiency. 
+
+
+## When to use hashset
+Hashset **doesnt** guarantee concurrent safe. If you do need a concurrent safe set, go for [skipset](https://github.com/zhangyunhao116/skipset/)
+
+## Quickstart
+```
+package main
+
+import (
+	"fmt"
+    "github.com/lyeeeeee/hashset"
+)
+
+func main() {
+	l := NewInt()
+
+	for _, v := range []int{10, 12, 15} {
+		if l.Add(v) {
+			fmt.Println("hashset add", v)
+		}
+	}
+
+	if l.Contains(10) {
+		fmt.Println("hashset contains 10")
+	}
+
+	l.Range(func(value int) bool {
+		fmt.Println("hashset range found ", value)
+		return true
+	})
+
+	l.Remove(15)
+	fmt.Printf("hashset contains %d items\r\n", l.Len())
+}
+```
 
 ## Benchmark
 go version: go1.15.10 linux/amd64  
 CPU: Intel(R) Xeon(R) Platinum 8260 CPU @ 2.40GHz (4C8T)  
 OS: Debian 4.14.81.bm.15  
 MEMORY: 16G  
-
 
 ```
 $ go test -run=None -bench=. -benchtime=1000000x -benchmem -count=10 -cpu=4 1000000x20x4.txt
