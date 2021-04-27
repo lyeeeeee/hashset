@@ -12,15 +12,15 @@ func NewInt64WithSize(size int) Int64Set {
 	return make(map[int64]struct{}, size)
 }
 
-//Add adds the specified element to this set
-//Always returns true due to the build-in map doesnt indicate caller whether the given element already exists
-//Reserves the return type for future extension
+// Add adds the specified element to this set
+// Always returns true due to the build-in map doesnt indicate caller whether the given element already exists
+// Reserves the return type for future extension
 func (s Int64Set) Add(value int64) bool {
 	s[value] = struct{}{}
 	return true
 }
 
-//Contains returns true if this set contains the specified element
+// Contains returns true if this set contains the specified element
 func (s Int64Set) Contains(value int64) bool {
 	if _, ok := s[value]; ok {
 		return true
@@ -28,15 +28,16 @@ func (s Int64Set) Contains(value int64) bool {
 	return false
 }
 
-//Remove removes the specified element from this set
-//Always returns true due to the build-in map doesnt indicate caller whether the given element already exists
-//Reserves the return type for future extension
+// Remove removes the specified element from this set
+// Always returns true due to the build-in map doesnt indicate caller whether the given element already exists
+// Reserves the return type for future extension
 func (s Int64Set) Remove(value int64) bool {
 	delete(s, value)
 	return true
 }
 
-//Function f executes by taking element in the set as parameter sequentially until f returns false
+// Range calls f sequentially for each value present in the hashset.
+// If f returns false, range stops the iteration.
 func (s Int64Set) Range(f func(value int64) bool) {
 	for k := range s {
 		if !f(k) {
@@ -45,7 +46,7 @@ func (s Int64Set) Range(f func(value int64) bool) {
 	}
 }
 
-//Returns the number of elements of this set
+// Len eturns the number of elements of this set
 func (s Int64Set) Len() int {
 	return len(s)
 }
