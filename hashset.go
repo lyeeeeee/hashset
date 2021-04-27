@@ -46,7 +46,31 @@ func (s Int64Set) Range(f func(value int64) bool) {
 	}
 }
 
-// Len eturns the number of elements of this set
+// Intersection returns a set, that is the intersection of two other sets
+func (s Int64Set) Intersection(another Int64Set) interface{} {
+	intersection := NewInt64()
+	for i := range s {
+		if another.Contains(i) {
+			intersection.Add(i)
+		}
+	}
+	return intersection
+}
+
+// Union returns a set containing the union of sets
+func (s Int64Set) Union(another Int64Set) interface{} {
+	union := NewInt64()
+
+	for i := range s {
+		union.Add(i)
+	}
+	for i := range another {
+		union.Add(i)
+	}
+	return union
+}
+
+// Len returns the number of elements of this set
 func (s Int64Set) Len() int {
 	return len(s)
 }

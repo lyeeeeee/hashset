@@ -2,6 +2,7 @@ package hashset
 
 import (
 	"fmt"
+	"reflect"
 	"testing"
 )
 
@@ -56,5 +57,47 @@ func TestIntSet(t *testing.T) {
 	}
 	if l.Add(21); l.Len() != 3 {
 		t.Fatal(l.Len(), " invalid add")
+	}
+}
+
+func TestIntSetIntersection(t *testing.T) {
+	l1 := NewInt64()
+	l1.Add(99)
+	l1.Add(88)
+	l1.Add(77)
+
+	l2 := NewInt64()
+	l2.Add(77)
+	l2.Add(66)
+	l2.Add(55)
+
+	expected := NewInt64()
+	expected.Add(77)
+
+	if res := l1.Intersection(l2); !reflect.DeepEqual(expected, res){
+		t.Fatal(" invalid intersection")
+	}
+}
+
+func TestIntSetUnion(t *testing.T) {
+	l1 := NewInt64()
+	l1.Add(99)
+	l1.Add(88)
+	l1.Add(77)
+
+	l2 := NewInt64()
+	l2.Add(77)
+	l2.Add(66)
+	l2.Add(55)
+
+	expected := NewInt64()
+	expected.Add(99)
+	expected.Add(88)
+	expected.Add(77)
+	expected.Add(66)
+	expected.Add(55)
+
+	if res := l1.Union(l2); !reflect.DeepEqual(expected, res){
+		t.Fatal(" invalid intersection")
 	}
 }
